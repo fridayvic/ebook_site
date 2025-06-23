@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart - Ebook Marketplace</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Simple styles for image preview */
+    #book-preview {
+      margin-top: 20px;
+      max-width: 200px;
+      border: 1px solid #ddd;
+      padding: 10px;
+      display: none;
+    }
+    #book-preview img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    #book-preview .title {
+      margin-top: 8px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Ebook Hub</div>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="cart.html" class="active">Cart</a></li>
+        <li><a href="purchase.html">Purchase</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Your Cart</h1>
+
+    <p>Please choose a book to proceed to checkout:</p>
+
+    <label for="book-dropdown">Select a book:</label>
+    <select id="book-dropdown">
+      <option value="" disabled selected>Select a book</option>
+      <option value="Eloquent JavaScript">Eloquent JavaScript</option>
+      <option value="Clean Code">Clean Code</option>
+      <option value="Python Crash Course">Python Crash Course</option>
+      <option value="The Pragmatic Programmer">The Pragmatic Programmer</option>
+      <option value="The Pragmatic Programmer">The Pragmatic Programmer</option>
+    </select>
+
+    <div id="book-preview">
+      <img id="preview-img" src="images/eloquent-js.jpg" alt="Book cover" />
+      <div class="Eloquent JavaScript" id="preview-title"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Ebook Hub. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const books = {
+      "Eloquent JavaScript": "images/eloquent-js.jpg",
+      "Clean Code": "images/eloquent-js.jpg",
+      "Python Crash Course": "images/python-crash-course.jpg",
+      "The Pragmatic Programmer": "images/pragmatic-programmer.jpg"
+    };
+
+    const dropdown = document.getElementById("book-dropdown");
+    const preview = document.getElementById("book-preview");
+    const previewImg = document.getElementById("preview-img");
+    const previewTitle = document.getElementById("preview-title");
+
+    dropdown.addEventListener("change", function() {
+      const selectedBook = this.value;
+      if (selectedBook && books[selectedBook]) {
+        previewImg.src = books[selectedBook];
+        previewImg.alt = selectedBook + " cover";
+        previewTitle.textContent = selectedBook;
+        preview.style.display = "block";
+
+        // Redirect to purchase page
+        const encodedTitle = encodeURIComponent(selectedBook);
+        window.location.href = `purchase.html?book=${encodedTitle}`;
+      } else {
+        preview.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

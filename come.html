@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebook Marketplace</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Ebook Hub</div>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="cart.html" class="active">cart</a></li>
+                <li><a href="purchase.html" class="active">Purchase</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <h1>Featured Ebooks</h1>
+        <div class="book-list">
+            <div class="book-card">
+
+                <a href="book-detail.html?title=Think%20and%20Grow%20Rich&author=Napoleon%20Hill&price=10.99&desc=Classic%20self-help%20book&img=download.jpeg">
+    <img src="images/download.jpeg" alt="Think and Grow Rich">
+    <h3>Think and Grow Rich</h3>
+    <p class="author">Napoleon Hill</p>
+    <p class="price">$10.99</p>
+</a>
+<div class="book-actions">
+    <a href="purchase.html?book=Think%20and%20Grow%20Rich" class="button buy-button">Buy Now</a>
+</div>
+
+                 <div class="book-actions">
+                    <a href="purchase.html?book=Think%20and%20Grow%20Rich" class="button buy-button">Buy Now</a>
+
+                </div>
+            </div>
+            <div class="book-card">
+                <a href="book-detail.html?title=The%20Power%20Of%20You&author=ZENA&price=14.99&desc=Empowerment%20book&img=shopping%20(1).webp">
+                <img src="images/shopping%20(1).webp" alt="The Power Of You">
+                <h3>The Power Of You</h3>
+                <p class="author">by ZENA</p>
+                <p class="price">$14.99</p>
+        </a>
+        <div class="book-actions">
+        <a href="purchase.html?book=The%20Power%20Of%20You" class="button buy-button">Buy Now</a>
+</div>
+
+            </div>
+            <div class="book-card">
+                <a href="book-detail.html?title=YOU%27RE%20THE%20BOSS&author=Sabina%20Nawaz&price=12.99&desc=Become%20the%20Manager%20You%20Want%20to%20Be&img=s-l500.jpg">
+    <img src="images/s-l500.jpg" alt="YOU'RE THE BOSS">
+    <h3>YOU'RE THE BOSS</h3>
+    <p class="author">by SABINA NAWAZ</p>
+    <p class="price">$12.99</p>
+</a>
+<div class="book-actions">
+    <a href="purchase.html?book=YOU%27RE%20THE%20BOSS" class="button buy-button">Buy Now</a>
+</div>
+
+
+            </div>
+            </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Ebook Hub. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Ebook Marketplace</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        
+    </header>
+    <main class="container">
+        <h1>Login to Your Account</h1>
+        <form class="auth-form">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="button primary">Login</button>
+        </form>
+        <p class="auth-link">Don't have an account? <a href="register.html">Register</a></p>
+    </main>
+    <footer>
+        <p>&copy; 2025 Ebook Hub. All rights reserved.</p>
+    </footer>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get("book");
+        if (title) {
+            document.getElementById("book-title").textContent = decodeURIComponent(title);
+        }
+    </script>
+</body>
+</html>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Ebook Marketplace</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Ebook Hub</div>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="cart.html" class="active">cart</a></li>
+                <li><a href="purchase.html">Purchase</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+    <h1>Your Cart</h1>
+    
+    <p>Please choose a book to proceed to checkout:</p>
+    
+    <label for="book-dropdown">Select a book:</label>
+    <select id="book-dropdown">
+        <option value="" disabled selected>Select a book</option>
+        <option value="Eloquent JavaScript">Eloquent JavaScript</option>
+        <option value="Clean Code">Clean Code</option>
+        <option value="Python Crash Course">Python Crash Course</option>
+        <option value="The Pragmatic Programmer">The Pragmatic Programmer</option>
+    </select>
+</main>
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ebook Hub. All rights reserved.</p>
+    </footer>
+    <script>
+    const dropdown = document.getElementById("book-dropdown");
+
+    dropdown.addEventListener("change", function () {
+        const selectedBook = encodeURIComponent(this.value);
+        window.location.href = `purchase.html?book=${selectedBook}`;
+    });
+</script>
+
+</body>
+</html>

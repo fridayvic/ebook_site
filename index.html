@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ebook Marketplace</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Minimal styles for demo */
+    .book-list {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .book-card {
+      border: 1px solid #ddd;
+      padding: 9px;
+      width: 200px;
+    }
+    .book-card img {
+      max-width: 100%;
+      height: auto;
+    }
+    .button.buy-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 12px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Ebook Hub</div>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="purchase.html">Purchase</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Featured Ebooks</h1>
+    <div class="book-list" id="book-list">
+      <!-- Book cards will be injected here -->
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Ebook Hub. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Array of book objects
+    const books = [
+      {
+        title: "Think and Grow Rich",
+        author: "Napoleon Hill",
+        price: 10.99,
+        desc: "Classic self-help book about mindset and wealth.",
+        img: "download.jpeg"
+      },
+      {
+        title: "The Power Of You",
+        author: "ZENA",
+        price: 14.99,
+        desc: "Empowerment book to boost your personal growth.",
+        img: "shopping (1).webp"
+      },
+      {
+        title: "YOU'RE THE BOSS",
+        author: "Sabina Nawaz",
+        price: 12.99,
+        desc: "Become the manager you want to be (and others need).",
+        img: "s-l500.jpg"
+      },
+      {
+        title: "The Mind Of The Leader",
+        author: " Rasmus Hougaard",
+        price: 20.99,
+        desc: "The Mind of the Leader: How to Lead Yourself, Your People, and Your Organization for Extraordinary Results.",
+        img: "shopping.webp"
+      },
+      {
+        title: "ELOQUENT JAVASCRIPT",
+        author: " Marijn Haverbeke.",
+        price: 14.99,
+        desc: "This is a book about JavaScript, programming, and the wonders of the digital. You can read it online here, or buy your own.",
+        img: "eloquent-js.jpg"
+      },
+      {
+       title: "You Become What You Think About",
+        author: "Vic Johnson",
+        price: 30.99,
+        desc: "How Your Mind Create The You Live In.",
+        img: "download.webp"
+      },
+        {
+       title: "The Pragmatic programmer",
+        author: "Andrew Hunt David Thomas",
+        price: 50.99,
+        desc: "From Journeyman to Master.",
+        img: "content.jpeg"
+        },
+    ];
+
+    const bookListEl = document.getElementById("book-list");
+
+    books.forEach(book => {
+      // Encode all info for URLs
+      const urlParams = new URLSearchParams({
+        title: book.title,
+        author: book.author,
+        price: book.price,
+        desc: book.desc,
+        img: book.img
+      });
+
+      // Create book card container
+      const card = document.createElement("div");
+      card.className = "book-card";
+
+      card.innerHTML = `
+        <a href="book-detail.html?${urlParams.toString()}">
+          <img src="images/${book.img}" alt="${book.title}" />
+          <h3>${book.title}</h3>
+          <p class="author">${book.author}</p>
+          <p class="price">$${book.price.toFixed(2)}</p>
+        </a>
+        <div class="book-actions">
+          <a href="purchase.html?book=${encodeURIComponent(book.title)}" class="button buy-button">Buy Now</a>
+        </div>
+      `;
+
+      bookListEl.appendChild(card);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Purchase Book</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #f9f9f9;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    .success-message {
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Ebook Hub</div>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="cart.html" class="active">cart</a></li>
+                <li><a href="purchase.html" class="active">Purchase</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Purchase Book</h1>
+    <p>You are purchasing: <strong id="book-title">Selected Book</strong></p>
+
+    <form id="payment-form">
+      <label for="fullname">Full Name:</label>
+      <input type="text" id="fullname" name="fullname" required />
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="card-number">Card Number:</label>
+      <input type="text" id="card-number" name="card-number" maxlength="16" required />
+
+      <label for="expiry">Expiry Date:</label>
+      <input type="month" id="expiry" name="expiry" required />
+
+      <label for="cvv">CVV:</label>
+      <input type="text" id="cvv" name="cvv" maxlength="4" required />
+
+      <button type="submit">Pay Now</button>
+
+      <div class="success-message" id="success-message" style="display:none;">
+        Payment successful! Thank you for your purchase.
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Ebook Hub. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Get book title from URL
+    const params = new URLSearchParams(window.location.search);
+    const bookTitle = params.get("book");
+    if (bookTitle) {
+      document.getElementById("book-title").textContent = decodeURIComponent(bookTitle);
+    }
+
+    // Handle fake payment form submission
+    document.getElementById("payment-form").addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent actual form submission
+      document.getElementById("success-message").style.display = "block";
+      this.reset(); // Optional: clear the form
+    });
+  </script>
+</body>
+</html>

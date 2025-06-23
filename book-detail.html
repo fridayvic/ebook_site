@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Book Details | Ebook Marketplace</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Ebook Hub</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container book-details">
+        <div class="book-cover">
+            <img id="book-image" src="" alt="Book Cover" style="max-width:200px;" />
+        </div>
+        <div class="book-info">
+            <h1 id="book-title">Loading...</h1>
+            <p class="author" id="book-author"></p>
+            <p class="price" id="book-price"></p>
+            <p id="book-desc"></p>
+            <div class="book-actions">
+                <a id="buy-now" href="#" class="button buy-button">Buy Now</a>
+            </div>
+            <a href="index.html" class="button">Back to Home</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Ebook Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const title = params.get("title") || "Unknown Title";
+      const author = params.get("author") || "Unknown Author";
+      const price = params.get("price") || "N/A";
+      const desc = params.get("desc") || "No description available.";
+      const img = params.get("img") || "default.jpg";
+
+      document.getElementById("book-title").textContent = decodeURIComponent(title);
+      document.getElementById("book-author").textContent = "BY " + decodeURIComponent(author);
+      document.getElementById("book-price").textContent = "Price: $" + price;
+      document.getElementById("book-desc").textContent = decodeURIComponent(desc);
+
+      document.getElementById("book-image").src = "images/" + decodeURIComponent(img);
+      document.getElementById("book-image").alt = decodeURIComponent(title);
+
+      document.getElementById("buy-now").href = "purchase.html?book=" + encodeURIComponent(title);
+    </script>
+</body>
+</html>
